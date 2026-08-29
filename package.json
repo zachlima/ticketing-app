@@ -1,0 +1,26 @@
+{
+  "name": "ticketing-app",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Helpdesk ticketing app — email-to-ticket via Microsoft Graph, Postgres, React",
+  "workspaces": [
+    "packages/shared",
+    "packages/email-service",
+    "packages/api",
+    "packages/web"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "dev:api": "npm run dev --workspace @ticketing/api",
+    "dev:email": "npm run dev --workspace @ticketing/email-service",
+    "dev:web": "npm run dev --workspace @ticketing/web"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

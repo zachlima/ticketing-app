@@ -1,0 +1,10 @@
+.env*
+.DS_Store
+.idea/
+node_modules/
+dist/
+build/
+docs/
+.claude
+*.log
+*.tsbuildinfo
