@@ -17,7 +17,8 @@
     "typecheck": "npm run typecheck --workspaces --if-present",
     "dev:api": "npm run dev --workspace @ticketing/api",
     "dev:email": "npm run dev --workspace @ticketing/email-service",
-    "dev:web": "npm run dev --workspace @ticketing/web"
+    "dev:web": "npm run dev --workspace @ticketing/web",
+    "dev": "tsc -p tsconfig.json --watch"
   },
   "devDependencies": {
     "tsx": "^4.19.2",
