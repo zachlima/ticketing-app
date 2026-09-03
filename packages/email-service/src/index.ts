@@ -3,10 +3,10 @@
  * messages into ticket rows.
  *
  * The poll loop and shutdown handling are wired up.
- * `pollOnce` talks to graph. See docs/design.md §1.
+ * `pollOnce` acquires a Graph token. See docs/design.md §1.
  */
 import { closePool } from '@ticketing/shared';
-import Graph from './graph.js'
+import { getAccessToken } from './graph.js'
 
 const POLL_INTERVAL_MS = 60_000;
 
@@ -19,8 +19,8 @@ async function pollOnce(): Promise<void> {
   //   - match     -> insert ticket_reply, then set parent status to
   //                  'waiting_response' if sender is a known agent,
   //                  otherwise 'in_progress'
-  const graph = await Graph();
-  console.log(graph.slice(0, 10));
+  const token = await getAccessToken();
+  console.log(token.slice(0, 10));
 }
 
 async function main(): Promise<void> {
