@@ -31,7 +31,7 @@ export async function listMessages(): Promise<GraphMessage[]> {
     const token = await getAccessToken();
     const mailbox = encodeURIComponent(config.sharedMailbox());
     const url =
-        `https://graph.microsoft.com/v1.0/users/${mailbox}/messages?$top=3&$select=id,conversationId,subject,receivedDateTime,from`;
+        `https://graph.microsoft.com/v1.0/users/${mailbox}/messages?$top=10&$select=id,conversationId,subject,receivedDateTime,from`;
 
     const response = await fetch(url, {
         headers: {

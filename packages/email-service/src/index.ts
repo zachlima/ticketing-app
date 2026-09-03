@@ -22,7 +22,9 @@ async function pollOnce(): Promise<void> {
   const messages = await listMessages();
   console.log(`[email-service] ${messages.length} message(s)`)
   for (const message of messages) {
-    console.log(` - ${message.receivedDateTime} | ${message.subject || '(no subject)'}`);
+    console.log(
+        ` - ${message.conversationId.slice(-12)} | ${message.from?.emailAddress.address ?? '?'} | ${message.subject || '(no subject)'}`,
+    );
   }
 }
 
