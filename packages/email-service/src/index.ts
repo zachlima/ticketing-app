@@ -6,7 +6,7 @@
  * `pollOnce` acquires a Graph token. See docs/design.md §1.
  */
 import { closePool } from '@ticketing/shared';
-import { getAccessToken } from './graph.js'
+import { listMessages } from './graph.js'
 
 const POLL_INTERVAL_MS = 60_000;
 
@@ -19,8 +19,11 @@ async function pollOnce(): Promise<void> {
   //   - match     -> insert ticket_reply, then set parent status to
   //                  'waiting_response' if sender is a known agent,
   //                  otherwise 'in_progress'
-  const token = await getAccessToken();
-  console.log(token.slice(0, 10));
+  const messages = await listMessages();
+  console.log(`[email-service] ${messages.length} message(s)`)
+  for (const message of messages) {
+    console.log(` - ${message.receivedDateTime} | ${message.subject || '(no subject)'}`);
+  }
 }
 
 async function main(): Promise<void> {
